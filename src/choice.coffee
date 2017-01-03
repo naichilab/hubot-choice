@@ -15,8 +15,7 @@
 #   naichilab <naichilab@live.jp>
 
 module.exports = (robot) ->
-  robot.respond /hello/, (res) ->
-    res.reply "hello!"
-
-  robot.hear /orly/, (res) ->
-    res.send "yarly"
+  robot.hear /(.+)から選んで/, (msg) ->
+    items = msg.match[1].split(/[・、\s,]+/)
+    item = msg.random items
+    msg.reply "#{item}で！！"
